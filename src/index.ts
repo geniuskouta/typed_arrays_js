@@ -1,12 +1,13 @@
 // src/app.ts
-import express, { Request, Response } from 'express';
+import express from 'express';
+import * as scheduleController from './controllers/schedule';
+
+type APIControllerType = (req: unknown, res: unknown) => void // the library does not accept Promise<void> return type
 
 const app = express();
 const PORT = 3000;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, Express!');
-});
+app.get('/', scheduleController.getSchedule as APIControllerType);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
