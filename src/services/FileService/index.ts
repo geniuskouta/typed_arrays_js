@@ -2,13 +2,9 @@ import * as fs from 'fs';
 import path from 'path';
 
 class FileService {
-    getFileByPath(filePath: string): Uint8Array {
+    getFileByPath(filePath: string): Buffer {
         const fileData = fs.readFileSync(filePath);
-        return new Uint8Array(fileData);
-    }
-
-    getFileSize(file: Uint8Array) {
-        return file.byteLength;
+        return fileData;
     }
 
     static getAssetsPath() {
